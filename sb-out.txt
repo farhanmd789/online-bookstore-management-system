@@ -1,0 +1,58 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< onlinebookstore:onlinebookstore >-------------------
+[INFO] Building onlinebookstore 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.7.18:run (default-cli) > test-compile @ onlinebookstore >>>
+[WARNING] 1 problem was encountered while building the effective model for org.javassist:javassist:jar:3.20.0-GA during dependency collection step for project (use -X to see details)
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ onlinebookstore ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 18 resources
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ onlinebookstore ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 27 source files to A:\fst536\onlinebookstore\target\classes
+[INFO] /A:/fst536/onlinebookstore/src/main/java/com/bittercode/controller/CustomerBookController.java: A:\fst536\onlinebookstore\src\main\java\com\bittercode\controller\CustomerBookController.java uses unchecked or unsafe operations.
+[INFO] /A:/fst536/onlinebookstore/src/main/java/com/bittercode/controller/CustomerBookController.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ onlinebookstore ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ onlinebookstore ---
+[INFO] Changes detected - recompiling the module!
+[INFO] 
+[INFO] <<< spring-boot:2.7.18:run (default-cli) < test-compile @ onlinebookstore <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.7.18:run (default-cli) @ onlinebookstore ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.18)
+
+2026-03-12 16:28:11.021  INFO 17964 --- [           main] com.bittercode.BookStoreApplication      : Starting BookStoreApplication using Java 21.0.7 on ACER with PID 17964 (A:\fst536\onlinebookstore\target\classes started by farhan in A:\fst536\onlinebookstore)
+2026-03-12 16:28:11.072  INFO 17964 --- [           main] com.bittercode.BookStoreApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-03-12 16:28:16.420  INFO 17964 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2026-03-12 16:28:16.472  INFO 17964 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-12 16:28:16.473  INFO 17964 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-03-12 16:28:17.305  INFO 17964 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-12 16:28:17.318  INFO 17964 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5262 ms
+2026-03-12 16:28:18.582  INFO 17964 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-12 16:28:19.422  INFO 17964 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2026-03-12 16:28:19.456  INFO 17964 --- [           main] com.bittercode.BookStoreApplication      : Started BookStoreApplication in 11.002 seconds (JVM running for 12.851)
+2026-03-12 16:29:04.779  INFO 17964 --- [nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-12 16:29:04.791  INFO 17964 --- [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-12 16:29:04.795  INFO 17964 --- [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
