@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Update Book</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: seller-nav" th:with="activePage='storebooks'"></th:block>
+</header>
+
+<div class="container my-2">
+    <div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}"></div>
+    <div th:if="${successMsg}" class="alert alert-success" th:text="${successMsg}"></div>
+
+    <div th:if="${book == null and errorMsg == null}" style="padding:30px; text-align:center; color:#ccddee;">
+        <p>No book selected. Please go to <a th:href="@{/storebooks}">Store Books</a> and click Update.</p>
+    </div>
+
+    <table th:if="${book != null}" class="tab my-5">
+        <tr>
+            <td>
+                <form th:action="@{/updatebook}" method="post">
+                    <label for="bookCode">Book Code:</label>
+                    <input type="text" name="barcode" id="bookCode" th:value="${book.barcode}" readonly><br>
+                    <label for="bookName">Book Name:</label>
+                    <input type="text" name="name" id="bookName" th:value="${book.name}" required><br>
+                    <label for="bookAuthor">Book Author:</label>
+                    <input type="text" name="author" id="bookAuthor" th:value="${book.author}" required><br>
+                    <label for="bookPrice">Book Price:</label>
+                    <input type="number" name="price" id="bookPrice" th:value="${book.price}" required><br>
+                    <label for="bookQty">Book Quantity:</label>
+                    <input type="number" name="quantity" id="bookQty" th:value="${book.quantity}" required><br>
+                    <input class="btn btn-success my-2" type="submit" value=" Update Book ">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

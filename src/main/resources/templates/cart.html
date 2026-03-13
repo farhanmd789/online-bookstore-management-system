@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Shopping Cart</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: customer-nav" th:with="activePage='cart'"></th:block>
+</header>
+
+<div id="topmid">Shopping Cart</div>
+
+<div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}" style="margin:10px 20px;"></div>
+
+<div style="margin: 0 20px 20px; overflow-x: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>BookId</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Price/Item</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${cartItems == null or cartItems.isEmpty()}">
+                <th colspan="6" style="text-align:center;">No Items In the Cart</th>
+            </tr>
+            <tr th:each="item : ${cartItems}">
+                <td th:text="${item.book.barcode}"></td>
+                <td th:text="${item.book.name}"></td>
+                <td th:text="${item.book.author}"></td>
+                <td>&#8377; <span th:text="${item.book.price}"></span></td>
+                <td style="white-space:nowrap;">
+                    <form method="post" th:action="@{/cart}" style="display:inline;">
+                        <input type="hidden" name="selectedBookId" th:value="${item.book.barcode}">
+                        <button type="submit" name="removeFromCart" class="btn btn-danger btn-sm" style="min-width:34px;">&#8722;</button>
+                    </form>
+                    <strong style="color:#00d4ff; margin: 0 6px;" th:text="${item.quantity}"></strong>
+                    <form method="post" th:action="@{/cart}" style="display:inline;">
+                        <input type="hidden" name="selectedBookId" th:value="${item.book.barcode}">
+                        <button type="submit" name="addToCart" class="btn btn-success btn-sm" style="min-width:34px;">&#43;</button>
+                    </form>
+                </td>
+                <td>&#8377; <span th:text="${item.book.price * item.quantity}"></span></td>
+            </tr>
+            <tr th:if="${amountToPay != null and amountToPay > 0}">
+                <th colspan="5" style="text-align:center;">Total Amount To Pay</th>
+                <td><strong>&#8377; <span th:text="${amountToPay}"></span></strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:if="${amountToPay != null and amountToPay > 0}" style="text-align:right; margin-right:20px;">
+    <form th:action="@{/checkout}" method="post">
+        <input type="submit" class="btn btn-primary" th:value="'Proceed to Pay ₹ ' + ${amountToPay}">
+    </form>
+</div>
+</body>
+</html>

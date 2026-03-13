@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Remove Book</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: seller-nav" th:with="activePage='removebook'"></th:block>
+</header>
+
+<div class="container">
+    <div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}"></div>
+    <div th:if="${successMsg}" class="alert alert-success" th:text="${successMsg}"></div>
+
+    <form th:action="@{/removebook}" method="post" class="my-5">
+        <table class="tab">
+            <tr>
+                <td>
+                    <label for="bookId">Enter BookId to Remove:</label>
+                    <input type="text" name="bookId" id="bookId" placeholder="Enter Book Id" required>
+                    <input class="btn btn-danger my-2" type="submit" value="Remove Book">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div th:if="${successMsg != null}">
+        <table class="tab"><tr><td><a th:href="@{/removebook}">Remove more Books</a></td></tr></table>
+    </div>
+</div>
+</body>
+</html>

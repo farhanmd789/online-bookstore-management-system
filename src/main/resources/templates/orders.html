@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - My Orders</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: customer-nav" th:with="activePage='orders'"></th:block>
+</header>
+
+<div id="topmid">My Order History</div>
+
+<div class="container my-3">
+    <div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}"></div>
+
+    <div th:if="${orders == null or orders.isEmpty()}"
+         class="alert alert-info"
+         style="text-align:center; padding:30px; background:rgba(0,212,255,0.1); border:2px solid #00d4ff; border-radius:8px; color:#fff;">
+        <h4>No orders found</h4>
+        <p>You haven&apos;t placed any orders yet. <a th:href="@{/viewbook}">Browse books</a> to get started!</p>
+    </div>
+
+    <div th:if="${orders != null and !orders.isEmpty()}" style="overflow-x:auto;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Price (&#8377;)</th>
+                    <th>Qty</th>
+                    <th>Total (&#8377;)</th>
+                    <th>Order Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order, stat : ${orders}">
+                    <td th:text="${stat.index + 1}"></td>
+                    <td><strong th:text="${order.bookName}"></strong></td>
+                    <td th:text="${order.bookAuthor}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${order.quantity}"></td>
+                    <td><strong th:text="${#numbers.formatDecimal(order.price * order.quantity, 1, 2)}"></strong></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td>
+                        <span style="background:#00d4ff; color:#1a1a2e; padding:5px 10px; border-radius:12px; font-weight:600;">Delivered</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

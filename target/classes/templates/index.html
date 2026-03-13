@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Online Book Store</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: public-nav"></th:block>
+</header>
+
+<div class="hero-section">
+    <h1>Welcome to <span>BookVerse</span></h1>
+    <p>Your ultimate destination for books. Discover thousands of titles across all genres &mdash; explore, buy, and enjoy reading with the best prices and fast delivery.</p>
+    <div class="hero-buttons">
+        <a th:href="@{/userlog}" class="hero-btn hero-btn-primary">&#128214; Browse Books</a>
+        <a th:href="@{/userreg}" class="hero-btn hero-btn-outline">&#9998; Register Now</a>
+    </div>
+</div>
+</body>
+</html>

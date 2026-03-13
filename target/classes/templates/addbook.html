@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Add Book</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: seller-nav" th:with="activePage='addbook'"></th:block>
+</header>
+
+<div class="container my-2">
+    <div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}"></div>
+    <div th:if="${successMsg}" class="alert alert-success" th:text="${successMsg}"></div>
+
+    <table class="tab my-5">
+        <tr>
+            <td>
+                <form th:action="@{/addbook}" method="post">
+                    <label for="bookName">Book Name:</label>
+                    <input type="text" name="name" id="bookName" placeholder="Enter Book's name" required><br>
+                    <label for="bookAuthor">Book Author:</label>
+                    <input type="text" name="author" id="bookAuthor" placeholder="Enter Author's Name" required><br>
+                    <label for="bookPrice">Book Price:</label>
+                    <input type="number" name="price" id="bookPrice" placeholder="Enter the Price" required><br>
+                    <label for="bookQty">Book Quantity:</label>
+                    <input type="number" name="quantity" id="bookQty" placeholder="Enter the quantity" required><br>
+                    <input class="btn btn-success my-2" type="submit" value=" Add Book ">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

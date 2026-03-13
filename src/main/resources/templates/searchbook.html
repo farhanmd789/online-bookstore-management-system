@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Search Books</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: customer-nav" th:with="activePage='search'"></th:block>
+</header>
+
+<div id="topmid" style="flex-direction:column; gap:14px;">
+    <span style="font-size:22px; font-weight:700;">&#128269; Search Books</span>
+    <form th:action="@{/searchbook}" method="get" style="display:flex; gap:10px; align-items:center; width:100%; max-width:560px;">
+        <input type="text" name="query" placeholder="Search by title or author..."
+               th:value="${query != null ? query : ''}"
+               style="flex:1; padding:10px 16px; border-radius:6px; border:2px solid #00d4ff; background:#1a1a2e; color:#fff; font-size:15px;" required>
+        <input type="submit" class="btn btn-primary" value="Search" style="white-space:nowrap;">
+    </form>
+</div>
+
+<!-- No search yet -->
+<div th:if="${query == null or query.trim().isEmpty()}"
+     style="text-align:center; margin:60px 20px; color:#ccddee; font-size:18px;">
+    &#128214; Enter a book title or author name above to search.
+</div>
+
+<th:block th:if="${query != null and !query.trim().isEmpty()}">
+    <!-- No results -->
+    <div th:if="${books == null or books.isEmpty()}"
+         style="text-align:center; margin:50px 20px; padding:40px; background:rgba(26,26,46,0.85);
+                border:2px solid rgba(0,212,255,0.3); border-radius:12px; color:#ccddee;">
+        <div style="font-size:48px; margin-bottom:16px;">&#128218;</div>
+        <h3 style="color:#00d4ff; margin-bottom:10px;">No Books Found</h3>
+        <p style="font-size:16px; margin:0;">No books matching <strong style="color:#fff;" th:text="'&quot;' + ${query} + '&quot;'"></strong> are available.</p>
+        <p style="margin-top:14px;"><a th:href="@{/viewbook}" class="btn btn-primary" style="display:inline-block; padding:10px 24px;">Browse All Books</a></p>
+    </div>
+
+    <!-- Results -->
+    <th:block th:if="${books != null and !books.isEmpty()}">
+        <p style="margin:10px 20px 6px; color:#ccddee; font-size:14px;">
+            Showing <strong style="color:#00d4ff;" th:text="${books.size()}">0</strong> result(s) for &ldquo;<strong style="color:#fff;" th:text="${query}"></strong>&rdquo;
+        </p>
+        <div class="container">
+            <div class="card-columns">
+                <div th:each="book : ${books}" class="card">
+                    <div class="row card-body">
+                        <img class="col-sm-6" src="/websitelogo.png" alt="BookVerse">
+                        <div class="col-sm-6">
+                            <h5 class="card-title" th:text="${book.name}">Book Name</h5>
+                            <p class="card-text">Author: <span th:text="${book.author}">Author</span></p>
+                            <p class="card-text">Price: &#8377; <span th:text="${book.price}">0</span></p>
+
+                            <p th:if="${book.quantity == 0}" class="btn btn-danger">Out Of Stock</p>
+
+                            <th:block th:if="${book.quantity > 0}">
+                                <th:block th:with="cartQty=${#session.getAttribute('qty_' + book.barcode)}">
+                                    <form th:if="${cartQty == null or cartQty == 0}" th:action="@{/viewbook}" method="post">
+                                        <input type="hidden" name="selectedBookId" th:value="${book.barcode}">
+                                        <input type="hidden" th:name="${'qty_' + book.barcode}" value="1">
+                                        <input type="submit" class="add-to-cart-btn" name="addToCart" value="Add To Cart">
+                                    </form>
+                                    <th:block th:if="${cartQty != null and cartQty > 0}">
+                                        <form method="post" th:action="@{/cart}" style="display:inline;">
+                                            <input type="hidden" name="selectedBookId" th:value="${book.barcode}">
+                                            <button type="submit" name="removeFromCart" class="btn btn-danger btn-sm" style="min-width:34px;">&#8722;</button>
+                                        </form>
+                                        <strong style="color:#00d4ff;" th:text="${cartQty}">0</strong>
+                                        <form method="post" th:action="@{/cart}" style="display:inline;">
+                                            <input type="hidden" name="selectedBookId" th:value="${book.barcode}">
+                                            <button type="submit" name="addToCart" class="btn btn-success btn-sm" style="min-width:34px;">&#43;</button>
+                                        </form>
+                                    </th:block>
+                                </th:block>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>
+</body>
+</html>

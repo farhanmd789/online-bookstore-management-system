@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Welcome</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: customer-nav"></th:block>
+</header>
+<div id="topmid"><h1>Welcome to Online Book Store</h1></div>
+
+<div style="padding: 20px 30px;">
+    <!-- Welcome hero card -->
+    <div style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); border: 2px solid #00d4ff;
+         border-radius: 12px; padding: 40px; text-align: center; margin: 24px 0;
+         box-shadow: 0 8px 24px rgba(0,212,255,0.2);">
+        <div style="font-size: 56px; margin-bottom: 14px;">&#128218;</div>
+        <h2 style="color: #00d4ff; font-size: 30px; font-weight: 700; margin-bottom: 10px;">
+            Hello, <span th:text="${firstName}">Customer</span>! &#x1F44B;
+        </h2>
+        <p style="color: #ccddee; font-size: 18px; margin-bottom: 24px;">Happy Learning! Your next great read is just a click away.</p>
+        <a th:href="@{/viewbook}" style="background-color: #00d4ff; color: #1a1a2e; padding: 13px 34px;
+           border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 16px; display: inline-block;">Browse Books &rarr;</a>
+    </div>
+
+    <!-- Quick actions grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 24px 0;">
+        <a th:href="@{/viewbook}" style="text-decoration: none;">
+            <div style="background: rgba(255,255,255,0.96); border: 2px solid #00d4ff; border-radius: 10px;
+                 padding: 28px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
+                <div style="font-size: 40px; margin-bottom: 12px;">&#128214;</div>
+                <h3 style="color: #1a1a2e; font-size: 17px; font-weight: 700; margin-bottom: 8px;">Browse Books</h3>
+                <p style="color: #555; font-size: 14px; margin: 0;">Explore our wide collection across all genres.</p>
+            </div>
+        </a>
+        <a th:href="@{/cart}" style="text-decoration: none;">
+            <div style="background: rgba(255,255,255,0.96); border: 2px solid #00d4ff; border-radius: 10px;
+                 padding: 28px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
+                <div style="font-size: 40px; margin-bottom: 12px;">&#128722;</div>
+                <h3 style="color: #1a1a2e; font-size: 17px; font-weight: 700; margin-bottom: 8px;">My Cart</h3>
+                <p style="color: #555; font-size: 14px; margin: 0;">View and manage items before checkout.</p>
+            </div>
+        </a>
+        <a th:href="@{/orders}" style="text-decoration: none;">
+            <div style="background: rgba(255,255,255,0.96); border: 2px solid #00d4ff; border-radius: 10px;
+                 padding: 28px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
+                <div style="font-size: 40px; margin-bottom: 12px;">&#128203;</div>
+                <h3 style="color: #1a1a2e; font-size: 17px; font-weight: 700; margin-bottom: 8px;">My Orders</h3>
+                <p style="color: #555; font-size: 14px; margin: 0;">Track your past purchases and history.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Quote -->
+    <div style="background: rgba(0,212,255,0.08); border-left: 4px solid #00d4ff;
+         border-radius: 8px; padding: 20px 26px; margin: 24px 0;">
+        <p style="color: #e0f0ff; font-size: 16px; font-style: italic; margin: 0;">
+            &ldquo;A reader lives a thousand lives before he dies. The man who never reads lives only one.&rdquo;
+        </p>
+        <p style="color: #00d4ff; font-size: 14px; font-weight: 600; margin-top: 8px; margin-bottom: 0;">&mdash; George R.R. Martin</p>
+    </div>
+</div>
+</body>
+</html>

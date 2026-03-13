@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/layout :: common-head"></th:block>
+    <title>BookVerse - Order Confirmed</title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/layout :: customer-nav" th:with="activePage='cart'"></th:block>
+</header>
+
+<div id="topmid">Your Orders</div>
+
+<div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}" style="margin:10px 20px;"></div>
+
+<div class="container">
+    <div class="card-columns">
+        <div th:each="book : ${orderedBooks}" class="card">
+            <div class="row card-body">
+                <img class="col-sm-6" src="/websitelogo.png" alt="BookVerse">
+                <div class="col-sm-6">
+                    <h5 class="card-title" th:text="${book.name}">Book Name</h5>
+                    <p class="card-text">Author: <span th:text="${book.author}">Author</span></p>
+                    <p class="card-text" style="color:#00d4ff; font-weight:700;">&#10003; Order Placed!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:30px;">
+        <a th:href="@{/viewbook}" class="btn btn-primary">Continue Shopping</a>
+        <a th:href="@{/orders}" class="btn btn-success" style="margin-left:10px;">View My Orders</a>
+    </div>
+</div>
+</body>
+</html>
